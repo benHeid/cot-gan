@@ -41,8 +41,8 @@ def train(args):
 
     n_iters = 100000
     Dx = 10
-    g_output_activation = 'linear'
-    time_steps = 100
+    g_output_activation = args.output_activation
+    time_steps = args.time_steps
 
     if dname == 'AROne':
         data_dist = data_utils.AROne(
@@ -285,6 +285,7 @@ if __name__ == '__main__':
     parser.add_argument('-gfs', '--g_filter_size', type=int, default=32)
     parser.add_argument('-dfs', '--d_filter_size', type=int, default=32)
     parser.add_argument('-r', '--reg_penalty', type=float, default=10.0)
+    parser.add_argument('-oa', '--output_activation', type=str, default='linear', choices=['linear', 'sigmoid', 'tanh'])
     parser.add_argument('-ts', '--time_steps', type=int, default=48)
     parser.add_argument('-sinke', '--sinkhorn_eps', type=float, default=100)
     parser.add_argument('-sinkl', '--sinkhorn_l', type=int, default=100)
@@ -298,6 +299,8 @@ if __name__ == '__main__':
     parser.add_argument('-lr', '--lr', type=float, default=1e-3)
     parser.add_argument('-bn', '--bn', type=int, default=1,
                         help="batch norm")
+    
+    output_activation
 
     args = parser.parse_args()
 
